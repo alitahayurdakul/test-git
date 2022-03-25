@@ -33,21 +33,26 @@ function Navbar(props) {
                 .then(async(res) => {
                     setBTC(res.data.data.market_data)
                   await  props.setBTC(res.data.data.market_data.price_usd)
+                  console.log(res)
                 })
+                .catch(err => console.log(err))
         ])
+    //    const {data} = await axios.get("https://data.messari.io/api/v1/assets/btc/metrics")
+    //    setBTC(data.data.market_data)
+    //     await props.setBTC(data.data.market_data.price_usd)
     }
 
     return (
         <div className='navbar'>
-            {
-                price.length !== 0 ? <>
-                    <NavbarParts name="USD" Buying={price.USD.Buying} Selling={price.USD.Selling} Change={price.USD.Change} />
-                    <NavbarParts name="EURO" Buying={price.EUR.Buying} Selling={price.EUR.Selling} Change={price.EUR.Change} />
+            { 
+                 price.length !== 0 ? <> 
+                     <NavbarParts name="USD" Buying={price.USD.Buying} Selling={price.USD.Selling} Change={price.USD.Change} />
+                    {/* <NavbarParts name="EURO" Buying={price.EUR.Buying} Selling={price.EUR.Selling} Change={price.EUR.Change} />
                     <NavbarParts name="RUBLE" Buying={price.RUB.Buying} Selling={price.RUB.Selling} Change={price.RUB.Change} />
                     <NavbarParts name={price.GRA.name} Buying={price.GRA.Buying} Selling={price.GRA.Selling} Change={price.GRA.Change} />
                     <NavbarParts name={price.CUM.name} Buying={price.CUM.Buying} Selling={price.CUM.Selling} Change={price.CUM.Change} />
                     <NavbarParts name={price.ONS.name} Buying={price.ONS.Buying} Selling={price.ONS.Selling} Change={price.ONS.Change} />
-                    <NavbarParts name={price.GUM.name} Buying={price.GUM.Buying} Selling={price.GUM.Selling} Change={price.GUM.Change} />
+                    <NavbarParts name={price.GUM.name} Buying={price.GUM.Buying} Selling={price.GUM.Selling} Change={price.GUM.Change} />  */}
                     <div>
                         <p data-testid="btc">
                             BTC/USD
@@ -55,12 +60,12 @@ function Navbar(props) {
                         <p data-testid="btc-price">
                             Fiyat:{parseInt(btc.price_usd).toFixed(2)}
                         </p>
-                        <p data-testid="btc-change" style={parseInt(btc.percent_change_usd_last_24_hours) > 0 ? { color: "green" } : { color: "red" }}>
-                            Değişim:%{parseInt(btc.percent_change_usd_last_24_hours).toFixed(2)}
+                        <p data-testid="btc-change" style={parseFloat(btc.percent_change_usd_last_24_hours) > 0 ? { color: "green" } : { color: "red" }}>
+                            Değişim:%{parseFloat(btc.percent_change_usd_last_24_hours).toFixed(2)}
                         </p>
                     </div>
-                </> : <p>Loading</p>
-            }
+                 </> : <p>Loading</p> 
+     } 
         </div>
     )
 }

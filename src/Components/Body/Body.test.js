@@ -14,7 +14,7 @@ const MockBody = () => {
 }
 
 describe("Body", () => {
-
+    //it=test
     it("Select Part when changed", () => {
         render(
             <MockBody/>
@@ -55,9 +55,18 @@ describe("Body", () => {
         render(
             <MockBody  />
         );
-        const element= screen.getByTestId("turning");
+        const element = screen.getByTestId("turning");
         expect(element).toBeInTheDocument();
     });
+
+    it("TRY word count === 3", ()=> {
+        render(
+            <MockBody  />
+        );
+
+        const element = screen.getAllByText(/TRY/i);
+        expect(element.length).toBe(3);
+    })
 
     it("Input placeholder is true?", () => {
         render(
@@ -84,8 +93,9 @@ describe("Body", () => {
         fireEvent.change(inputElement,{target:{value:"a"}})
         expect(inputElement.value).not.toBe("a");
     })
-    
+
     // there is a mistake in onClickConvert function in Body.js because of Selling is null
+
     // it("Input placeholder is not null when click button?", async() => {
     //     render(
     //         <MockBody/>
