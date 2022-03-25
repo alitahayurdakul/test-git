@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import NavbarParts from './NavbarParts'
 
+// const mockedSetTodo = jest.fn();
 describe("NavbarParts", () => {
 
     //getByText
